@@ -131,12 +131,13 @@ struct TodoDetailView: View {
                     }
                     // Bouton Share
                     ToolbarItem {
-                        ShareLink(item: "Je te partage ma nouvelle Todo: \n\(item.title!)\n\(item.plot!)")
+                        ShareLink(item: "Je te partage ma nouvelle Todo: \n\(item.title ?? "No title")\n\(item.plot ?? "No description")")
                     }
                     
                     // Bouton Back
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
+                            print(item.isDone)
                             self.presentationMode.wrappedValue.dismiss()
                         } label: {
                             HStack {
@@ -145,7 +146,7 @@ struct TodoDetailView: View {
                             }
                         }
                     }
-                }.navigationBarTitle(item.title!)
+                }.navigationBarTitle(item.title ?? "No title")
             }
         }
     }

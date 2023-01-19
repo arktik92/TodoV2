@@ -13,12 +13,12 @@ struct AddTodoView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     /* Variables d'état */
-    @Environment(\.presentationMode) var presentationMode
     @State var title: String = ""
     @State var content: String = ""
     @State var expire: Date = Date.now
     @State var showingAlertContent = false
     @State var showingAlertTitle = false
+    @Binding var addTodo: Bool
     
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
@@ -34,7 +34,7 @@ struct AddTodoView: View {
                             Task {
                                 addItem(title: title, plot: content, expire: expire)
                                 todoVM.todos = await todoVM.loadData(vc: viewContext)
-                                self.presentationMode.wrappedValue.dismiss()
+                                addTodo = false
                             }
                         } else {
                             showingAlertContent = true
@@ -101,7 +101,7 @@ struct AddTodoView: View {
 
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTodoView()
+        AddTodoView(addTodo: .constant(false))
             .environmentObject(TodoViewModel())
     }
 }

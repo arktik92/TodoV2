@@ -17,6 +17,9 @@
 		70A342D62976DC7600C7A340 /* todoTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70A342D42976DC7600C7A340 /* todoTest.xcdatamodeld */; };
 		70A342DD2976DE3B00C7A340 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DC2976DE3B00C7A340 /* AddTodoView.swift */; };
 		70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */; };
+		70C7D4BC29798B1500A60038 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BB29798B1500A60038 /* BackgroundColor.swift */; };
+		70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */; };
+		70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BF29798C8100A60038 /* TaskListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		70A342D52976DC7600C7A340 /* todoTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = todoTest.xcdatamodel; sourceTree = "<group>"; };
 		70A342DC2976DE3B00C7A340 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailView.swift; sourceTree = "<group>"; };
+		70C7D4BB29798B1500A60038 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
+		70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerTodoOrDone.swift; sourceTree = "<group>"; };
+		70C7D4BF29798C8100A60038 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,8 @@
 				70A342CB2976DC7500C7A340 /* ContentView.swift */,
 				70A342DC2976DE3B00C7A340 /* AddTodoView.swift */,
 				70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */,
+				70C7D4BF29798C8100A60038 /* TaskListView.swift */,
+				70C7D4BA29798AF400A60038 /* Helper */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +115,15 @@
 				70A342D02976DC7600C7A340 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		70C7D4BA29798AF400A60038 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				70C7D4BB29798B1500A60038 /* BackgroundColor.swift */,
+				70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,10 +199,13 @@
 				70A342D32976DC7600C7A340 /* Persistence.swift in Sources */,
 				70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */,
 				70A342CC2976DC7500C7A340 /* ContentView.swift in Sources */,
+				70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */,
 				70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */,
 				7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */,
+				70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */,
 				7031BD0F2976FB3F000B407F /* TypePickerSelection.swift in Sources */,
 				70A342D62976DC7600C7A340 /* todoTest.xcdatamodeld in Sources */,
+				70C7D4BC29798B1500A60038 /* BackgroundColor.swift in Sources */,
 				70A342DD2976DE3B00C7A340 /* AddTodoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"todoTest/Preview Content\"";
-				DEVELOPMENT_TEAM = CDT2LZXUGZ;
+				DEVELOPMENT_TEAM = 57WR64CG7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -357,7 +377,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.arktik.todoTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arktik.todoTest2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
