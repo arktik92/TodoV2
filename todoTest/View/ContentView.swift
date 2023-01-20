@@ -18,7 +18,7 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     var items: FetchedResults<Item>
-//
+
     /* Variables D'état */
     @State var addTodo: Bool = false
     @State var pickerSelection: TypePickerSelection = .todo
@@ -27,7 +27,11 @@ struct ContentView: View {
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
     
+    /* Variable Anim SpashScreen */
+    @State var showSplash = true
+
     var body: some View {
+         
             NavigationView {
                 ZStack {
                     // MARK: - Background Color
@@ -46,7 +50,6 @@ struct ContentView: View {
                         .sheet(isPresented: $addTodo, content: {
                             AddTodoView(addTodo: $addTodo)
                         })
-                        
                         // MARK: - Toolbar
                         .toolbar {
                             ToolbarItem {
@@ -62,6 +65,23 @@ struct ContentView: View {
                     }
                     .navigationTitle("Todo List")
                     .navigationBarTitleDisplayMode(.inline)
+                    SplashScreen()
+                      .opacity(showSplash ? 1 : 0)
+                      .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                          SplashScreen.shouldAnimate = false
+                          withAnimation() {
+                            self.showSplash = false
+                          }
+                        }
+                    }
+                }
+                .onAppear {
+                 //DispatchQueue.main.asyncAfter(date limite : .now() + 2) {
+                // withAnimation() {
+                // self.showSplash = false
+                // }
+                //}
                 }
             }
     }

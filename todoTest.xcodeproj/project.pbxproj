@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701D8E3F297A8975002853AE /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701D8E3E297A8975002853AE /* SplashScreen.swift */; };
 		7031BD0F2976FB3F000B407F /* TypePickerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */; };
 		7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031BD182977EC2E000B407F /* todoViewModel.swift */; };
 		70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342C92976DC7500C7A340 /* todoTestApp.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		701D8E3E297A8975002853AE /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerSelection.swift; sourceTree = "<group>"; };
 		7031BD182977EC2E000B407F /* todoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoViewModel.swift; sourceTree = "<group>"; };
 		70A342C62976DC7500C7A340 /* todoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 				70A342DC2976DE3B00C7A340 /* AddTodoView.swift */,
 				70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */,
 				70C7D4BF29798C8100A60038 /* TaskListView.swift */,
+				701D8E3E297A8975002853AE /* SplashScreen.swift */,
 				70C7D4BA29798AF400A60038 /* Helper */,
 			);
 			path = View;
@@ -203,6 +206,7 @@
 				70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */,
 				7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */,
 				70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */,
+				701D8E3F297A8975002853AE /* SplashScreen.swift in Sources */,
 				7031BD0F2976FB3F000B407F /* TypePickerSelection.swift in Sources */,
 				70A342D62976DC7600C7A340 /* todoTest.xcdatamodeld in Sources */,
 				70C7D4BC29798B1500A60038 /* BackgroundColor.swift in Sources */,
