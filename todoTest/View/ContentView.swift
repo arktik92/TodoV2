@@ -21,7 +21,6 @@ struct ContentView: View {
     @State var addTodo: Bool = false
     @State var pickerSelection: TypePickerSelection = .todo
     
-    
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
     
@@ -80,7 +79,6 @@ struct ContentView: View {
         }
     }
 }
-
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {

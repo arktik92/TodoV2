@@ -40,13 +40,11 @@ struct AddTodoView: View {
                             showingAlertContent = true
                         }
                     } else {
-                        showingAlertTitle = true
-                        
+                        showingAlertTitle = true 
                     }
                 } label: {
                     Text("Ajouter")
                         .padding(30)
-                        
                 }
                 .alert("Oups ! Tu as oublié d'ajouter une description", isPresented: $showingAlertContent) {
                     Button("OK", role: .cancel) { }
@@ -55,7 +53,6 @@ struct AddTodoView: View {
                     Button("OK", role: .cancel) { }
                 }
             }
-           
             // MARK: - Formulaire
             Form {
                 Section {
@@ -79,7 +76,6 @@ struct AddTodoView: View {
             }
         } .background(Color(red: 0.109, green: 0.109, blue: 0.117))
     }
-    
     // MARK: - Fonction Ajout de todo
     func addItem(title: String, plot: String, expire: Date) {
         withAnimation {

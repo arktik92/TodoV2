@@ -43,7 +43,6 @@ struct TodoDetailView: View {
                         DatePicker(selection: $expire, displayedComponents: .hourAndMinute) {
                             Text("heure")
                         }
-                        
                     } header: {
                         Text("Dates")
                     }
@@ -74,12 +73,9 @@ struct TodoDetailView: View {
                 // MARK: - si editMode = false affichage de la View non-modifiable
             else {
                 VStack(alignment: .leading) {
-                    
                     Text("Date d'écheance de la Todo:")
                         .font(.title3)
                         .fontWeight(.heavy)
-                        
-                        
                     Text("Le \(item.expire ?? Date.now, formatter: dateFormatter)")
                         .padding(.bottom)
                         .fontWeight(.bold)
@@ -88,11 +84,9 @@ struct TodoDetailView: View {
                         .fontWeight(.heavy)
                     Text(item.plot ?? "No description")
                         .fontWeight(.bold)
-
                     Spacer()
                     HStack {
                         Spacer()
-                        
                         // MARK: - Bouton qui passe la Todo à done
                         Button {
                             Task {
@@ -101,10 +95,8 @@ struct TodoDetailView: View {
                                 try? await Task.sleep(nanoseconds: 1_500_000_000)
                                 self.presentationMode.wrappedValue.dismiss()
                             }
-                            
                         } label: {
                             Text("Terminer la Todo")
-                                
                                 .padding(15)
                                 .background(
                                     Color.accentColor
