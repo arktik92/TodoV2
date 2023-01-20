@@ -27,7 +27,7 @@ struct TaskListView: View {
                             .fontWeight(.semibold)
                         Text(item.plot ?? "No Description")
                             .lineLimit(1)
-                    }
+                    }.foregroundColor(.black)
                 }
                 .listStyle(.plain)
                 .listRowBackground(Color.clear)
@@ -92,6 +92,7 @@ struct TaskListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { todoVM.todos.remove(at: $0)}
             do {
                 Task{
                     try viewContext.save()
@@ -105,8 +106,10 @@ struct TaskListView: View {
     }
 }
 
+#if DEBUG
 struct TaskListView_Previews: PreviewProvider {
     static var previews: some View {
         TaskListView(pickerSelection: .constant(.todo))
     }
 }
+#endif

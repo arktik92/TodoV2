@@ -17,7 +17,7 @@ struct todoTestApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(todoVM)
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.dark)
         }
     }
 }

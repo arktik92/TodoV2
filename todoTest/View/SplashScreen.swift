@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+// Code à placer dans la ContentView
+// @State var showSplash = true
+// Avant l'accolade de fermeture de la
+// ZStack :
+//
+// SplashScreen()
+//.opacity(showSplash ? 1 : 0)
+//.onAppear {
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//        SplashScreen.shouldAnimate = false
+//        withAnimation() {
+//            self.showSplash = false
+//        }
+//    }
+//}
+
 struct SplashScreen: View {
     static var shouldAnimate = true
     let todoBlue = Color("Todo blue") // MARK: - 1.Creer couleur
@@ -182,11 +198,3 @@ struct TodoA: Shape {
         set { percent = newValue }
     }
 }
-
-#if DEBUG
-struct SplashScreen_Previews : PreviewProvider {
-    static var previews: some View {
-        SplashScreen()
-    }
-}
-#endif

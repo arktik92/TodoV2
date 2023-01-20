@@ -77,7 +77,7 @@ struct AddTodoView: View {
                     Text("Date et heure")
                 }
             }
-        } .background(Color(red: 0.949, green: 0.949, blue: 0.968))
+        } .background(Color(red: 0.109, green: 0.109, blue: 0.117))
     }
     
     // MARK: - Fonction Ajout de todo
@@ -99,9 +99,11 @@ struct AddTodoView: View {
     }
 }
 
+#if DEBUG
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
         AddTodoView(addTodo: .constant(false))
             .environmentObject(TodoViewModel())
     }
 }
+#endif

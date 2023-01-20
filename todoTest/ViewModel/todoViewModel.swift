@@ -10,8 +10,6 @@ import SwiftUI
 import CoreData
 
 class TodoViewModel: ObservableObject {
-    /* Variables CoreData */
-    
    
     // MARK: - Tableau D'Item
     @Published var todos: [Item] = []

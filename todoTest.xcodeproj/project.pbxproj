@@ -18,6 +18,8 @@
 		70A342D62976DC7600C7A340 /* todoTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70A342D42976DC7600C7A340 /* todoTest.xcdatamodeld */; };
 		70A342DD2976DE3B00C7A340 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DC2976DE3B00C7A340 /* AddTodoView.swift */; };
 		70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */; };
+		70B2BBDE297AAED3001F766F /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 70B2BBDD297AAED3001F766F /* Introspect */; };
+		70C6642E297AA69900F5FF7B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6642D297AA69900F5FF7B /* CustomColor.swift */; };
 		70C7D4BC29798B1500A60038 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BB29798B1500A60038 /* BackgroundColor.swift */; };
 		70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */; };
 		70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BF29798C8100A60038 /* TaskListView.swift */; };
@@ -36,6 +38,7 @@
 		70A342D52976DC7600C7A340 /* todoTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = todoTest.xcdatamodel; sourceTree = "<group>"; };
 		70A342DC2976DE3B00C7A340 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailView.swift; sourceTree = "<group>"; };
+		70C6642D297AA69900F5FF7B /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		70C7D4BB29798B1500A60038 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerTodoOrDone.swift; sourceTree = "<group>"; };
 		70C7D4BF29798C8100A60038 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70B2BBDE297AAED3001F766F /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				70C7D4BB29798B1500A60038 /* BackgroundColor.swift */,
+				70C6642D297AA69900F5FF7B /* CustomColor.swift */,
 				70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */,
 			);
 			path = Helper;
@@ -145,6 +150,9 @@
 			dependencies = (
 			);
 			name = todoTest;
+			packageProductDependencies = (
+				70B2BBDD297AAED3001F766F /* Introspect */,
+			);
 			productName = todoTest;
 			productReference = 70A342C62976DC7500C7A340 /* todoTest.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +181,9 @@
 				Base,
 			);
 			mainGroup = 70A342BD2976DC7500C7A340;
+			packageReferences = (
+				70B2BBDC297AAED3001F766F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 70A342C72976DC7500C7A340 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,6 +213,7 @@
 				70A342D32976DC7600C7A340 /* Persistence.swift in Sources */,
 				70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */,
 				70A342CC2976DC7500C7A340 /* ContentView.swift in Sources */,
+				70C6642E297AA69900F5FF7B /* CustomColor.swift in Sources */,
 				70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */,
 				70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */,
 				7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */,
@@ -411,6 +423,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		70B2BBDC297AAED3001F766F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		70B2BBDD297AAED3001F766F /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 70B2BBDC297AAED3001F766F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		70A342D42976DC7600C7A340 /* todoTest.xcdatamodeld */ = {

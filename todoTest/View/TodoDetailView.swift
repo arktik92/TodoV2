@@ -32,7 +32,7 @@ struct TodoDetailView: View {
                 Form {
                     Section {
                         TextField(item.title ?? "No title", text: $title)
-                        TextField(item.plot ?? "No Description", text: $plot, axis: .horizontal)
+                        TextField(item.plot ?? "No Description", text: $plot, axis: .vertical)
                     } header: {
                         Text("Informations")
                     }
@@ -104,7 +104,7 @@ struct TodoDetailView: View {
                             
                         } label: {
                             Text("Terminer la Todo")
-                                .foregroundColor(.white)
+                                
                                 .padding(15)
                                 .background(
                                     Color.accentColor
@@ -113,7 +113,9 @@ struct TodoDetailView: View {
                         }
                         Spacer()
                     }
-                } .padding(.horizontal, 10)
+                }
+                .foregroundColor(.black)
+                .padding(.horizontal, 10)
                 .navigationBarBackButtonHidden()
                 
                 // MARK: - Elements Toolbar
@@ -128,6 +130,11 @@ struct TodoDetailView: View {
                         } label: {
                             Text(editMode ? "Done" : "Edit")
                         }
+                    }
+                    // Title
+                    ToolbarItem(placement: .principal) {
+                        Text(item.title ?? "No title")
+                            .foregroundColor(.accentColor)
                     }
                     // Bouton Share
                     ToolbarItem {
@@ -176,9 +183,11 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 /*
+ #if DEBUG
  struct TodoDetailView_Previews: PreviewProvider {
  static var previews: some View {
  TodoDetailView()
  }
  }
+ #endif
  */
