@@ -18,31 +18,29 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     var items: FetchedResults<Item>
-
+    
     /* Variables D'état */
     @State var addTodo: Bool = false
     @State var pickerSelection: TypePickerSelection = .todo
     
-
+    
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
     
     /* Variable Anim SpashScreen */
     @State var showSplash = true
-
+    
     var body: some View {
-         
-            NavigationView {
-                ZStack {
-                    // MARK: - Background Color
-                    BackgroundColor()
-                    VStack {
-                        // MARK: - Picker Selection "TODO" ou "DONE"
-                        SegmentedPickerTodoOrDone(pickerSelection: $pickerSelection)
-                        
-                        // MARK: - Liste de Tâches
-                        TaskListView( pickerSelection: $pickerSelection)
-                        
+        NavigationView {
+            ZStack {
+                // MARK: - Background Color
+                BackgroundColor()
+                VStack {
+                    // MARK: - Picker Selection "TODO" ou "DONE"
+                    SegmentedPickerTodoOrDone(pickerSelection: $pickerSelection)
+                    
+                    // MARK: - Liste de Tâches
+                    TaskListView(pickerSelection: $pickerSelection)
                         .task {
                             // MARK: - Load Data
                             todoVM.todos = await todoVM.loadData(vc: viewContext)
@@ -50,7 +48,7 @@ struct ContentView: View {
                         .sheet(isPresented: $addTodo, content: {
                             AddTodoView(addTodo: $addTodo)
                         })
-                        // MARK: - Toolbar
+                    // MARK: - Toolbar
                         .toolbar {
                             ToolbarItem {
                                 Button {
@@ -59,33 +57,24 @@ struct ContentView: View {
                                 } label: {
                                     Image(systemName: "plus")
                                 }
-                                
                             }
                         }
-                    }
-                    .navigationTitle("Todo List")
-                    .navigationBarTitleDisplayMode(.inline)
-                    SplashScreen()
-                      .opacity(showSplash ? 1 : 0)
-                      .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                          SplashScreen.shouldAnimate = false
-                          withAnimation() {
-                            self.showSplash = false
-                          }
-                        }
-                    }
                 }
-                .onAppear {
-                 //DispatchQueue.main.asyncAfter(date limite : .now() + 2) {
-                // withAnimation() {
-                // self.showSplash = false
-                // }
-                //}
-                }
+                .navigationTitle("Todo List")
+                .navigationBarTitleDisplayMode(.inline)
+                SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
+                    .opacity(showSplash ? 1 : 0) //
+                    .onAppear { //
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { //
+                            SplashScreen.shouldAnimate = false //
+                            withAnimation() { //
+                                self.showSplash = false //
+                            } //
+                        } //
+                    } // Fin .onAppear
             }
+        }
     }
-    
 }
 
 

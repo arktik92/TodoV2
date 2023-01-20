@@ -70,7 +70,6 @@ struct TaskListView: View {
                         notificationCenter.add(request) { error in
                             if error != nil {
                                 print("ERREUR")
-                                print(error)
                             }
                             print("SUCCESS")
                         }

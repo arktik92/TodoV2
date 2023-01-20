@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashScreen: View {
     static var shouldAnimate = true
-    let todoBlue = Color("Todo blue")
+    let todoBlue = Color("Todo blue") // MARK: - 1.Creer couleur
     let uLineWidth: CGFloat = 5
     let uZoomFactor: CGFloat = 1.4
     let lineWidth:  CGFloat = 4
@@ -28,7 +28,7 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            Image("Chimes")
+            Image("Chimes") // MARK: - 2. Importer image background
                 .resizable(resizingMode: .tile)
                 .opacity(textAlpha)
                 .scaleEffect(textScale)
