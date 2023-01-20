@@ -10,6 +10,9 @@
 		701D8E3F297A8975002853AE /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701D8E3E297A8975002853AE /* SplashScreen.swift */; };
 		7031BD0F2976FB3F000B407F /* TypePickerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */; };
 		7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7031BD182977EC2E000B407F /* todoViewModel.swift */; };
+		709AFF2D297B17FB00FF212E /* SegmentedPickerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709AFF2C297B17FB00FF212E /* SegmentedPickerCategory.swift */; };
+		709AFF2F297B181900FF212E /* CategoryPickerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709AFF2E297B181900FF212E /* CategoryPickerSelection.swift */; };
+		709AFF31297B28DD00FF212E /* EditTodoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709AFF30297B28DD00FF212E /* EditTodoFormView.swift */; };
 		70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342C92976DC7500C7A340 /* todoTestApp.swift */; };
 		70A342CC2976DC7500C7A340 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342CB2976DC7500C7A340 /* ContentView.swift */; };
 		70A342CE2976DC7600C7A340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70A342CD2976DC7600C7A340 /* Assets.xcassets */; };
@@ -19,7 +22,6 @@
 		70A342DD2976DE3B00C7A340 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DC2976DE3B00C7A340 /* AddTodoView.swift */; };
 		70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */; };
 		70B2BBDE297AAED3001F766F /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 70B2BBDD297AAED3001F766F /* Introspect */; };
-		70C6642E297AA69900F5FF7B /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6642D297AA69900F5FF7B /* CustomColor.swift */; };
 		70C7D4BC29798B1500A60038 /* BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BB29798B1500A60038 /* BackgroundColor.swift */; };
 		70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */; };
 		70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7D4BF29798C8100A60038 /* TaskListView.swift */; };
@@ -29,6 +31,9 @@
 		701D8E3E297A8975002853AE /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePickerSelection.swift; sourceTree = "<group>"; };
 		7031BD182977EC2E000B407F /* todoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoViewModel.swift; sourceTree = "<group>"; };
+		709AFF2C297B17FB00FF212E /* SegmentedPickerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerCategory.swift; sourceTree = "<group>"; };
+		709AFF2E297B181900FF212E /* CategoryPickerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerSelection.swift; sourceTree = "<group>"; };
+		709AFF30297B28DD00FF212E /* EditTodoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoFormView.swift; sourceTree = "<group>"; };
 		70A342C62976DC7500C7A340 /* todoTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70A342C92976DC7500C7A340 /* todoTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoTestApp.swift; sourceTree = "<group>"; };
 		70A342CB2976DC7500C7A340 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,7 +43,6 @@
 		70A342D52976DC7600C7A340 /* todoTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = todoTest.xcdatamodel; sourceTree = "<group>"; };
 		70A342DC2976DE3B00C7A340 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailView.swift; sourceTree = "<group>"; };
-		70C6642D297AA69900F5FF7B /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		70C7D4BB29798B1500A60038 /* BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColor.swift; sourceTree = "<group>"; };
 		70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerTodoOrDone.swift; sourceTree = "<group>"; };
 		70C7D4BF29798C8100A60038 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */,
+				709AFF2E297B181900FF212E /* CategoryPickerSelection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -75,11 +80,12 @@
 		7031BD1C2977EFBB000B407F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				70A342CB2976DC7500C7A340 /* ContentView.swift */,
-				70A342DC2976DE3B00C7A340 /* AddTodoView.swift */,
-				70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */,
-				70C7D4BF29798C8100A60038 /* TaskListView.swift */,
 				701D8E3E297A8975002853AE /* SplashScreen.swift */,
+				70A342CB2976DC7500C7A340 /* ContentView.swift */,
+				70C7D4BF29798C8100A60038 /* TaskListView.swift */,
+				70A342DE2976E7DC00C7A340 /* TodoDetailView.swift */,
+				709AFF30297B28DD00FF212E /* EditTodoFormView.swift */,
+				70A342DC2976DE3B00C7A340 /* AddTodoView.swift */,
 				70C7D4BA29798AF400A60038 /* Helper */,
 			);
 			path = View;
@@ -128,8 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				70C7D4BB29798B1500A60038 /* BackgroundColor.swift */,
-				70C6642D297AA69900F5FF7B /* CustomColor.swift */,
 				70C7D4BD29798B7200A60038 /* SegmentedPickerTodoOrDone.swift */,
+				709AFF2C297B17FB00FF212E /* SegmentedPickerCategory.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -213,11 +219,13 @@
 				70A342D32976DC7600C7A340 /* Persistence.swift in Sources */,
 				70A342DF2976E7DC00C7A340 /* TodoDetailView.swift in Sources */,
 				70A342CC2976DC7500C7A340 /* ContentView.swift in Sources */,
-				70C6642E297AA69900F5FF7B /* CustomColor.swift in Sources */,
 				70C7D4C029798C8100A60038 /* TaskListView.swift in Sources */,
+				709AFF31297B28DD00FF212E /* EditTodoFormView.swift in Sources */,
+				709AFF2D297B17FB00FF212E /* SegmentedPickerCategory.swift in Sources */,
 				70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */,
 				7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */,
 				70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */,
+				709AFF2F297B181900FF212E /* CategoryPickerSelection.swift in Sources */,
 				701D8E3F297A8975002853AE /* SplashScreen.swift in Sources */,
 				7031BD0F2976FB3F000B407F /* TypePickerSelection.swift in Sources */,
 				70A342D62976DC7600C7A340 /* todoTest.xcdatamodeld in Sources */,
@@ -354,6 +362,7 @@
 				DEVELOPMENT_TEAM = 57WR64CG7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Todo List";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -383,6 +392,7 @@
 				DEVELOPMENT_TEAM = 57WR64CG7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Todo List";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

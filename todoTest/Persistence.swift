@@ -20,6 +20,8 @@ struct PersistenceController {
             newItem.plot = "plot"
             newItem.isDone = false
             newItem.expire = Date()
+            newItem.dateToggleSwitch = false
+            newItem.category = "travail"
         }
         do {
             try viewContext.save()

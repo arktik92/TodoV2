@@ -8,13 +8,13 @@
 import SwiftUI
 import Introspect
 
-struct SegmentedPickerTodoOrDone: View {
-    @Binding var pickerSelection: TypePickerSelection
+struct SegmentedPickerCategory: View {
+    @Binding var CategorypickerSelection: CategoryPickerSelection
     
     
     var body: some View {
-        Picker("", selection: $pickerSelection) {
-            ForEach(TypePickerSelection.allCases, id: \.self) { value in
+        Picker("", selection: $CategorypickerSelection) {
+            ForEach(CategoryPickerSelection.allCases, id: \.self) { value in
                 Text(value.rawValue.capitalized)
             }
         }
@@ -31,9 +31,9 @@ struct SegmentedPickerTodoOrDone: View {
 }
 
 #if DEBUG
-struct SegmentedPickerTodoOrDone_Previews: PreviewProvider {
+struct SegmentedPickerCategory_Previews: PreviewProvider {
     static var previews: some View {
-        SegmentedPickerTodoOrDone(pickerSelection: .constant(.todo))
+        SegmentedPickerCategory(CategorypickerSelection: .constant(.travail))
     }
 }
 #endif

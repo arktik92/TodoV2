@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-import UserNotifications
+
 
 struct ContentView: View {
     /* Variables CoreData */
@@ -20,6 +20,8 @@ struct ContentView: View {
     /* Variables D'état */
     @State var addTodo: Bool = false
     @State var pickerSelection: TypePickerSelection = .todo
+    @State var dateToggleSwitch: Bool = false
+
     
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
@@ -44,6 +46,7 @@ struct ContentView: View {
                         }
                         .sheet(isPresented: $addTodo, content: {
                             AddTodoView(addTodo: $addTodo)
+                                .presentationDetents([.medium, .large])
                         })
                     // MARK: - Toolbar
                         .toolbar {
@@ -59,16 +62,17 @@ struct ContentView: View {
                 }
 //                .navigationTitle("Todo List")
                 .navigationBarTitleDisplayMode(.inline)
-                SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
-                    .opacity(showSplash ? 1 : 0) //
-                    .onAppear { //
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { //
-                            SplashScreen.shouldAnimate = false //
-                            withAnimation() { //
-                                self.showSplash = false //
-                            } //
-                        } //
-                    } // Fin .onAppear
+                //TODO: Decommenter .onAppear
+//                SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
+//                    .opacity(showSplash ? 1 : 0) //
+//                    .onAppear { //
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { //
+//                            SplashScreen.shouldAnimate = false //
+//                            withAnimation() { //
+//                                self.showSplash = false //
+//                            } //
+//                        } //
+//                    } // Fin .onAppear
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

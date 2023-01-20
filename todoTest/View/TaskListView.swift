@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct TaskListView: View {
+    // MARK: - Variables CoreData
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     var items: FetchedResults<Item>
     
+    // MARK: - ImportationViewModel
     @EnvironmentObject var todoVM: TodoViewModel
+    
+    // MARK: -  Variable Binding
     @Binding var  pickerSelection: TypePickerSelection
+
     var body: some View {
         List {
             ForEach(todoVM.todos.filter {pickerSelection == .todo ? !$0.isDone : $0.isDone}) { item in
@@ -31,6 +36,7 @@ struct TaskListView: View {
                 }
                 .listStyle(.plain)
                 .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
                 .padding()
                     .background(
                         Color(red: Double.random(in: 0.5...1), green: Double.random(in: 0.5...1), blue: Double.random(in: 0.5...1))
@@ -47,38 +53,12 @@ struct TaskListView: View {
                                 print(error.localizedDescription)
                             }
                         }
-                        
-                        // Envoi de la notification
-                        var dateComponents = DateComponents()
-                        dateComponents = Calendar.current.dateComponents([.hour,.day,.minute], from: item.expire!)
-                        
-                        // Création du contenu de la notification
-                        let content = UNMutableNotificationContent()
-                        content.title = "\(item.title!)"
-                        content.subtitle = "\(item.plot!)"
-                        content.sound = UNNotificationSound.default
-
-                        // Création du déclencheur de la notification
-                        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-
-                        // création du random identifier et de la requete
-                        let uuidString = UUID().uuidString
-                        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-
-                        // Création, envoi de la requete et gestion de l'erreur
-                        let notificationCenter = UNUserNotificationCenter.current()
-                        notificationCenter.add(request) { error in
-                            if error != nil {
-                                print("ERREUR")
-                            }
-                            print("SUCCESS")
-                        }
-
                     }
             }
             .onDelete(perform: deleteItems)
             .onMove(perform: moveTodo(fromOffsets:toOffset:))
-        }.scrollContentBackground(.hidden)
+        }
+        .scrollContentBackground(.hidden)
     }
     
     
@@ -110,6 +90,7 @@ struct TaskListView: View {
 struct TaskListView_Previews: PreviewProvider {
     static var previews: some View {
         TaskListView(pickerSelection: .constant(.todo))
+            .environmentObject(TodoViewModel())
     }
 }
 #endif

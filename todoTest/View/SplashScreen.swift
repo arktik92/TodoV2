@@ -24,7 +24,10 @@ import SwiftUI
 //}
 
 struct SplashScreen: View {
+    // MARK: - Variables statiques
     static var shouldAnimate = true
+    
+    // MARK: - Constantes
     let todoBlue = Color("Todo blue") // MARK: - 1.Creer couleur
     let uLineWidth: CGFloat = 5
     let uZoomFactor: CGFloat = 1.4
@@ -32,6 +35,7 @@ struct SplashScreen: View {
     let lineHeight: CGFloat = 28
     let uSquareLength: CGFloat = 12
     
+    // MARK: - Variables d'état
     @State var percent = 0.0
     @State var uScale: CGFloat = 1
     @State var squareColor = Color.white
@@ -44,8 +48,9 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            Image("Chimes") // MARK: - 2. Importer image background
+            Image("backloader") // MARK: - 2. Importer image background
                 .resizable(resizingMode: .tile)
+                .clipShape(Circle())
                 .opacity(textAlpha)
                 .scaleEffect(textScale)
             
@@ -117,6 +122,7 @@ extension SplashScreen {
         }
     }
     
+    // MARK: -  Fonctions
     func runAnimationPart1() {
         withAnimation(.easeIn(duration: uAnimationDuration)) {
             percent = 1

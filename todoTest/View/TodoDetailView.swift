@@ -8,24 +8,29 @@
 import SwiftUI
 import CoreData
 
+#warning("Regler problème categorypickerSelection")
+
 struct TodoDetailView: View {
-    /* Variables CoreData */
+    // MARK: - Variables CoreData
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var item: Item
     
-    /* Variables d'état */
+    // MARK: - Variables d'état
     @State var title: String
     @State var plot: String
     @State var expire: Date
     @State var editMode: Bool = false
-    @State var showingAlertContent = false
-    @State var showingAlertTitle = false
+    @State var showingAlertTitleAndContent: Bool = false
+    @State var showingAlertContent: Bool = false
+    @State var showingAlertTitle: Bool = false
+    @State var categogyPickerSelection: CategoryPickerSelection = .travail
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
             // MARK: - Background Color
-            LinearGradient(colors: [Color(red: Double.random(in: 0.5...1), green: Double.random(in: 0.5...1), blue: Double.random(in: 0.5...1)),Color(red: Double.random(in: 0...0.5), green: Double.random(in: 0...0.5), blue: Double.random(in: 0...0.5))], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
+
+            BackgroundColor()
             
             // MARK: - editMode qui permet de modifier la Todo si il est = true
             if editMode {
@@ -37,14 +42,24 @@ struct TodoDetailView: View {
                         Text("Informations")
                     }
                     Section {
-                        DatePicker(selection: $expire, in: Date.now..., displayedComponents: .date) {
-                            Text("Date")
-                        }
-                        DatePicker(selection: $expire, displayedComponents: .hourAndMinute) {
-                            Text("heure")
+                        SegmentedPickerCategory(CategorypickerSelection: $categogyPickerSelection)
+                    }
+                    Section {
+                        if item.dateToggleSwitch {
+                            DatePicker(selection: $expire, in: Date.now..., displayedComponents: .date) {
+                                Text("Date")
+                            }
+                            DatePicker(selection: $expire, displayedComponents: .hourAndMinute) {
+                                Text("heure")
+                            }                            
                         }
                     } header: {
-                        Text("Dates")
+                        HStack {
+                            Text("Dates")
+                            Toggle(isOn: $item.dateToggleSwitch) {
+                                EmptyView()
+                            }
+                        }
                     }
                 }
                 .navigationBarBackButtonHidden()
@@ -52,20 +67,25 @@ struct TodoDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            if title != "" {
-                                if plot != "" {
-                                    saveItem()
+                            if title != "" && plot != "" {
+                                if title != "" {
+                                    if plot != "" {
+                                        saveItem()
+                                        editMode.toggle()
+                                    } else {
+                                        saveItemDate()
+                                        editMode.toggle()
+                                    }
+                                } else {
+                                    saveItemDate()
                                     editMode.toggle()
                                 }
+                            } else {
+                                saveItemDate()
+                                editMode.toggle()
                             }
                         } label: {
                             Text(editMode ? "Done" : "Edit")
-                        }
-                        .alert("Oups ! Tu as oublié d'ajouter une description", isPresented: $showingAlertContent) {
-                            Button("OK", role: .cancel) { }
-                        }
-                        .alert("Oups ! Tu as oublié d'ajouter un titre", isPresented: $showingAlertTitle) {
-                            Button("OK", role: .cancel) { }
                         }
                     }
                 }
@@ -73,12 +93,32 @@ struct TodoDetailView: View {
                 // MARK: - si editMode = false affichage de la View non-modifiable
             else {
                 VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        if item.category != nil {
+                            Text(item.category!)
+                                .foregroundColor(.black)
+                                .bold()
+                                .padding(25)
+                                .background(
+                                    Color.accentColor
+                                        .clipShape(Circle())
+                                )
+                        }
+                    }.padding(.vertical)
                     Text("Date d'écheance de la Todo:")
                         .font(.title3)
                         .fontWeight(.heavy)
-                    Text("Le \(item.expire ?? Date.now, formatter: dateFormatter)")
-                        .padding(.bottom)
-                        .fontWeight(.bold)
+                    if item.expire != nil {
+                        Text("Le \(item.expire ?? Date().advanced(by: 576), formatter: dateFormatter)")
+                            .padding(.bottom)
+                            .fontWeight(.bold)
+                    } else {
+                        Text("Indéterminé")
+                            .padding(.bottom)
+                            .fontWeight(.bold)
+                    }
+                        
                     Text("Description :")
                         .font(.title3)
                         .fontWeight(.heavy)
@@ -97,6 +137,7 @@ struct TodoDetailView: View {
                             }
                         } label: {
                             Text("Terminer la Todo")
+                                .foregroundColor(.black)
                                 .padding(15)
                                 .background(
                                     Color.accentColor
@@ -106,7 +147,7 @@ struct TodoDetailView: View {
                         Spacer()
                     }
                 }
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .padding(.horizontal, 10)
                 .navigationBarBackButtonHidden()
                 
@@ -149,17 +190,37 @@ struct TodoDetailView: View {
             }
         }
     }
-    
+
     // MARK: - Fonction SaveItem
     func saveItem() {
         do {
             item.title = title
             item.plot = plot
-            item.expire = expire
+            item.dateToggleSwitch = item.dateToggleSwitch
+            item.category = categogyPickerSelection.categoryPickerSelectionString
+            if item.dateToggleSwitch {
+                item.expire = expire
+            } else {
+                item.expire = nil
+            }
             try viewContext.save()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        
+    }
+    
+    func saveItemDate() {
+        do {
+            item.dateToggleSwitch = item.dateToggleSwitch
+            if item.dateToggleSwitch {
+                item.expire = expire
+            } else {
+                item.expire = nil
+            }
+            try viewContext.save()
+        } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
