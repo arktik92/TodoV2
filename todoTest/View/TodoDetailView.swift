@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 #warning("Regler problème categorypickerSelection")
+#warning("Ajouter switch couleurs en fonction du categoryPickerSelection")
 
 struct TodoDetailView: View {
     // MARK: - Variables CoreData
