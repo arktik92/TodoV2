@@ -30,7 +30,7 @@ struct SplashScreen: View {
     // MARK: - Constantes
     let todoBlue = Color("Todo blue") // MARK: - 1.Creer couleur
     let uLineWidth: CGFloat = 5
-    let uZoomFactor: CGFloat = 1.4
+    let uZoomFactor: CGFloat = 1.2
     let lineWidth:  CGFloat = 4
     let lineHeight: CGFloat = 28
     let uSquareLength: CGFloat = 12
@@ -61,7 +61,7 @@ struct SplashScreen: View {
                 .scaleEffect(coverCircleScale)
                 .opacity(coverCircleAlpha)
             
-            Text("T           DO")
+            Text("T        DO ")
                 .font(.largeTitle)
                 .foregroundColor(.white)
                 .opacity(textAlpha)

@@ -63,16 +63,16 @@ struct ContentView: View {
 //                .navigationTitle("Todo List")
                 .navigationBarTitleDisplayMode(.inline)
                 //TODO: Decommenter .onAppear
-//                SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
-//                    .opacity(showSplash ? 1 : 0) //
-//                    .onAppear { //
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) { //
-//                            SplashScreen.shouldAnimate = false //
-//                            withAnimation() { //
-//                                self.showSplash = false //
-//                            } //
-//                        } //
-//                    } // Fin .onAppear
+                SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
+                    .opacity(showSplash ? 1 : 0) //
+                    .onAppear { //
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { //
+                            SplashScreen.shouldAnimate = false //
+                            withAnimation() { //
+                                self.showSplash = false //
+                            } //
+                        } //
+                    } // Fin .onAppear
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

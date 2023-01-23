@@ -54,6 +54,9 @@ struct TaskListView: View {
                             }
                         }
                     }
+                    .swipeActions(edge: .leading) {
+                        ShareLink(item: "Je te partage ma nouvelle Todo: \n\(item.title ?? "No title")\n\(item.plot ?? "No description")")
+                    }
             }
             .onDelete(perform: deleteItems)
             .onMove(perform: moveTodo(fromOffsets:toOffset:))

@@ -128,22 +128,24 @@ struct TodoDetailView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        // MARK: - Bouton qui passe la Todo à done
-                        Button {
-                            Task {
-                                item.isDone = true
-                                saveItem()
-                                try? await Task.sleep(nanoseconds: 1_500_000_000)
-                                self.presentationMode.wrappedValue.dismiss()
+                        // MARK: - Bouton qui passe la Todo à done à condition de item.isDone = false
+                        if !item.isDone {
+                            Button {
+                                Task {
+                                    item.isDone = true
+                                    saveItem()
+                                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            } label: {
+                                Text("Terminer la Todo")
+                                    .foregroundColor(.black)
+                                    .padding(15)
+                                    .background(
+                                        Color.accentColor
+                                            .cornerRadius(25)
+                                    )
                             }
-                        } label: {
-                            Text("Terminer la Todo")
-                                .foregroundColor(.black)
-                                .padding(15)
-                                .background(
-                                    Color.accentColor
-                                        .cornerRadius(25)
-                                )
                         }
                         Spacer()
                     }
