@@ -15,6 +15,7 @@ struct TodoDetailView: View {
     // MARK: - Variables CoreData
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var item: Item
+    @ObservedObject var todoVM = TodoViewModel()
     
     // MARK: - Variables d'état
     @State var title: String
@@ -30,7 +31,6 @@ struct TodoDetailView: View {
     var body: some View {
         ZStack {
             // MARK: - Background Color
-
             BackgroundColor()
             
             // MARK: - editMode qui permet de modifier la Todo si il est = true
@@ -71,18 +71,18 @@ struct TodoDetailView: View {
                             if title != "" && plot != "" {
                                 if title != "" {
                                     if plot != "" {
-                                        saveItem()
+                                        todoVM.saveItem(item: item, title: title, plot: plot, categogyPickerSelection: categogyPickerSelection, expire: expire, vc: viewContext)
                                         editMode.toggle()
                                     } else {
-                                        saveItemDate()
+                                        todoVM.saveItemDate(item: item, vc: viewContext, expire: expire)
                                         editMode.toggle()
                                     }
                                 } else {
-                                    saveItemDate()
+                                    todoVM.saveItemDate(item: item, vc: viewContext, expire: expire)
                                     editMode.toggle()
                                 }
                             } else {
-                                saveItemDate()
+                                todoVM.saveItemDate(item: item, vc: viewContext, expire: expire)
                                 editMode.toggle()
                             }
                         } label: {
@@ -91,7 +91,7 @@ struct TodoDetailView: View {
                     }
                 }
             }
-                // MARK: - si editMode = false affichage de la View non-modifiable
+            // MARK: - si editMode = false affichage de la View non-modifiable
             else {
                 VStack(alignment: .leading) {
                     HStack {
@@ -111,7 +111,7 @@ struct TodoDetailView: View {
                         .font(.title3)
                         .fontWeight(.heavy)
                     if item.expire != nil {
-                        Text("Le \(item.expire ?? Date().advanced(by: 576), formatter: dateFormatter)")
+                        Text("Le \(item.expire ?? Date().advanced(by: 576), formatter: todoVM.dateFormatter)")
                             .padding(.bottom)
                             .fontWeight(.bold)
                     } else {
@@ -119,7 +119,7 @@ struct TodoDetailView: View {
                             .padding(.bottom)
                             .fontWeight(.bold)
                     }
-                        
+                    
                     Text("Description :")
                         .font(.title3)
                         .fontWeight(.heavy)
@@ -133,7 +133,7 @@ struct TodoDetailView: View {
                             Button {
                                 Task {
                                     item.isDone = true
-                                    saveItem()
+                                    todoVM.saveItem(item: item, title: title, plot: plot, categogyPickerSelection: categogyPickerSelection, expire: expire, vc: viewContext)
                                     try? await Task.sleep(nanoseconds: 1_500_000_000)
                                     self.presentationMode.wrappedValue.dismiss()
                                 }
@@ -156,15 +156,21 @@ struct TodoDetailView: View {
                 
                 // MARK: - Elements Toolbar
                 .toolbar {
-                    // Bouton Edit
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            if editMode {
-                                saveItem()
+                    if !item.isDone {
+                        // Bouton Edit
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                if editMode {
+                                    todoVM.saveItem(item: item, title: title, plot: plot, categogyPickerSelection: categogyPickerSelection, expire: expire, vc: viewContext)
+                                }
+                                editMode.toggle()
+                            } label: {
+                                Text(editMode ? "Done" : "Edit")
                             }
-                            editMode.toggle()
-                        } label: {
-                            Text(editMode ? "Done" : "Edit")
+                        }
+                        // Bouton Share
+                        ToolbarItem {
+                            ShareLink(item: "Je te partage ma nouvelle Todo: \n\(item.title ?? "No title")\n\(item.plot ?? "No description")")
                         }
                     }
                     // Title
@@ -172,11 +178,6 @@ struct TodoDetailView: View {
                         Text(item.title ?? "No title")
                             .foregroundColor(.accentColor)
                     }
-                    // Bouton Share
-                    ToolbarItem {
-                        ShareLink(item: "Je te partage ma nouvelle Todo: \n\(item.title ?? "No title")\n\(item.plot ?? "No description")")
-                    }
-                    
                     // Bouton Back
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -193,57 +194,4 @@ struct TodoDetailView: View {
             }
         }
     }
-
-    // MARK: - Fonction SaveItem
-    func saveItem() {
-        do {
-            item.title = title
-            item.plot = plot
-            item.dateToggleSwitch = item.dateToggleSwitch
-            item.category = categogyPickerSelection.categoryPickerSelectionString
-            if item.dateToggleSwitch {
-                item.expire = expire
-            } else {
-                item.expire = nil
-            }
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        
-    }
-    
-    func saveItemDate() {
-        do {
-            item.dateToggleSwitch = item.dateToggleSwitch
-            if item.dateToggleSwitch {
-                item.expire = expire
-            } else {
-                item.expire = nil
-            }
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        
-    }
 }
-
-// MARK: - DateFormatter
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    formatter.timeStyle = .short
-    return formatter
-}()
-/*
- #if DEBUG
- struct TodoDetailView_Previews: PreviewProvider {
- static var previews: some View {
- TodoDetailView()
- }
- }
- #endif
- */

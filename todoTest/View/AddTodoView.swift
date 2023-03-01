@@ -38,7 +38,7 @@ struct AddTodoView: View {
                         if title != "" {
                             if content != "" {
                                 Task {
-                                    addItem(title: title, plot: content, expire: expire)
+                                    todoVM.addItem(title: title, plot: content, expire: expire, categogyPickerSelection: categogyPickerSelection, dateToggleSwitch: dateToggleSwitch, vc: viewContext)
                                     todoVM.todos = await todoVM.loadData(vc: viewContext)
                                     addTodo = false
                                 }
@@ -101,68 +101,12 @@ struct AddTodoView: View {
             }
         } .background(Color(red: 0.109, green: 0.109, blue: 0.117))
     }
-    // MARK: - Fonction Ajout de todo
-    func addItem(title: String, plot: String, expire: Date?) {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.plot = plot
-            newItem.title = title
-            newItem.isDone = false
-            newItem.timestamp = Date()
-            newItem.category = categogyPickerSelection.categoryPickerSelectionString
-            newItem.dateToggleSwitch = dateToggleSwitch
-            if dateToggleSwitch {
-                newItem.expire = expire
-                // Envoi de la notification
-                
-                    var dateComponents = DateComponents()
-                    dateComponents = Calendar.current.dateComponents([.hour,.day,.minute], from: expire!)
-                    
-                    // Création du contenu de la notification
-                    let content = UNMutableNotificationContent()
-                    content.title = "\(title)"
-                    content.subtitle = "\(plot)"
-                    content.sound = UNNotificationSound.default
-                    
-                    // Création du déclencheur de la notification
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                    
-                    // création du random identifier et de la requete
-                    let uuidString = UUID().uuidString
-                    let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-                    
-                    // Création, envoi de la requete et gestion de l'erreur
-                    let notificationCenter = UNUserNotificationCenter.current()
-                    notificationCenter.add(request) { error in
-                        if error != nil {
-                            print("ERREUR")
-                        }
-                        print("SUCCESS")
-                    
-                }
-            }
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
 }
 
-#if DEBUG
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
         AddTodoView(expire: Date.now, addTodo: .constant(false))
             .environmentObject(TodoViewModel())
     }
 }
-#endif
 
-#warning("A voir si je garde l'extension")
-extension Binding {
-     func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
-        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
-    }
-}

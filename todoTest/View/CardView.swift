@@ -82,10 +82,6 @@ struct MainCard: View {
     }
 }
 
-
-
-
-
 struct Card: View {
     var title: String
     
