@@ -21,7 +21,6 @@ struct ContentView: View {
     @State var addTodo: Bool = false
     @State var pickerSelection: TypePickerSelection = .todo
     @State var dateToggleSwitch: Bool = false
-
     
     /* Importation ViewModel */
     @EnvironmentObject var todoVM: TodoViewModel
@@ -60,9 +59,7 @@ struct ContentView: View {
                             }
                         }
                 }
-//                .navigationTitle("Todo List")
                 .navigationBarTitleDisplayMode(.inline)
-                //TODO: Decommenter .onAppear
                 SplashScreen() // MARK: - 3.Appeler SplashScreen, lui donner une opacité et le .onAppear
                     .opacity(showSplash ? 1 : 0) //
                     .onAppear { //
@@ -83,12 +80,10 @@ struct ContentView: View {
         }
     }
 }
-
-#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(TodoViewModel())
     }
 }
-#endif
+
