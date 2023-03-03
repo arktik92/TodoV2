@@ -133,6 +133,7 @@ struct TodoDetailView: View {
                             Button {
                                 Task {
                                     item.isDone = true
+                                    
                                     todoVM.saveItem(item: item, title: title, plot: plot, categogyPickerSelection: categogyPickerSelection, expire: expire, vc: viewContext)
                                     try? await Task.sleep(nanoseconds: 1_500_000_000)
                                     self.presentationMode.wrappedValue.dismiss()

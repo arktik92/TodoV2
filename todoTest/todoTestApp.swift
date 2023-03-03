@@ -11,7 +11,6 @@ import SwiftUI
 struct todoTestApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var todoVM = TodoViewModel()
-
     var body: some Scene {
         WindowGroup {
             ContentView()

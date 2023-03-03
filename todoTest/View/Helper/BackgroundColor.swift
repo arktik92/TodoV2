@@ -13,8 +13,4 @@ struct BackgroundColor: View {
             .ignoresSafeArea()
     }
 }
-struct BackgroundColor_Previews: PreviewProvider {
-    static var previews: some View {
-        BackgroundColor()
-    }
-}
+

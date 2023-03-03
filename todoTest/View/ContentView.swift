@@ -11,7 +11,7 @@ import CoreData
 
 struct ContentView: View {
     /* Variables CoreData */
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
@@ -55,7 +55,7 @@ struct ContentView: View {
                                     addTodo.toggle()
                                 } label: {
                                     Image(systemName: "plus")
-                                }
+                                }.accessibilityIdentifier("addButton")
                             }
                         }
                 }

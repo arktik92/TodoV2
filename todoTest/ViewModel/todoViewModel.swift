@@ -10,8 +10,10 @@ import SwiftUI
 import CoreData
 
 @MainActor class TodoViewModel: ObservableObject {
-    // MARK: - Variable CoreData
-    @Environment(\.managedObjectContext) private var viewContext
+    // MARK: - Tableau D'Item
+    @Published var todos: [Item] = []
+    
+    let notificationManager = NotificationManager()
     
     // MARK: - DateFormatter
     let dateFormatter: DateFormatter = {
@@ -21,13 +23,11 @@ import CoreData
         return formatter
     }()
     
-    // MARK: - Tableau D'Item
-    @Published var todos: [Item] = []
-    
     // MARK: - InitVM
     init() {}
     
-    // MARK: - Fonction loadData qui permet d'implementer le tableau "todos"
+    // MARK: - Fonction loadData
+    // qui permet d'implementer le tableau "todos"
     func loadData(vc: NSManagedObjectContext) async -> [Item] {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
         do {
@@ -38,8 +38,29 @@ import CoreData
         }
     }
     
+    func scheduleNotification(triggerDate: Date?, title: String, plot: String) -> String {
+        let notificationId = UUID()
+        
+        // Création du contenu de la notification
+        let content = UNMutableNotificationContent()
+        content.title = "\(title)"
+        content.subtitle = "\(plot)"
+        content.sound = UNNotificationSound.default
+
+        // Envoi de la notification
+            var dateComponents = DateComponents()
+            dateComponents = Calendar.current.dateComponents([.hour,.day,.minute], from: triggerDate!)
+            
+        // Création du déclencheur de la notification
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        notificationManager.scheduleNotification(id: "\(notificationId)", content: content, trigger: trigger)
+        
+        return "\(notificationId)"
+    }
+  
     // MARK: - Fonction Ajout de todo
-    func addItem(title: String, plot: String, expire: Date?, categogyPickerSelection: CategoryPickerSelection, dateToggleSwitch: Bool, vc: NSManagedObjectContext) {
+    func addItem(title: String, plot: String, expire: Date?, categogyPickerSelection: CategoryPickerSelection, dateToggleSwitch: Bool, vc: NSManagedObjectContext) -> Item {
         withAnimation {
             let newItem = Item(context: vc)
             newItem.plot = plot
@@ -50,32 +71,8 @@ import CoreData
             newItem.dateToggleSwitch = dateToggleSwitch
             if dateToggleSwitch {
                 newItem.expire = expire
-                
-                // Envoi de la notification
-                    var dateComponents = DateComponents()
-                    dateComponents = Calendar.current.dateComponents([.hour,.day,.minute], from: expire!)
-                    
-                    // Création du contenu de la notification
-                    let content = UNMutableNotificationContent()
-                    content.title = "\(title)"
-                    content.subtitle = "\(plot)"
-                    content.sound = UNNotificationSound.default
-                    
-                    // Création du déclencheur de la notification
-                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                    
-                    // création du random identifier et de la requete
-                    let uuidString = UUID().uuidString
-                    let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-                    
-                    // Création, envoi de la requete et gestion de l'erreur
-                    let notificationCenter = UNUserNotificationCenter.current()
-                    notificationCenter.add(request) { error in
-                        if error != nil {
-                            print("ERREUR")
-                        }
-                        print("SUCCESS")
-                }
+                let notifId = scheduleNotification(triggerDate: newItem.expire, title: newItem.title!, plot: newItem.plot!)
+                newItem.notifId = notifId
             }
             do {
                 try vc.save()
@@ -83,6 +80,7 @@ import CoreData
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+            return newItem
         }
     }
     
@@ -95,6 +93,9 @@ import CoreData
             item.category = categogyPickerSelection.categoryPickerSelectionString
             if item.dateToggleSwitch {
                 item.expire = expire
+                notificationManager.removePendingNotification(id: item.notifId ?? "")
+                let notifId = scheduleNotification(triggerDate: item.expire, title: item.title!, plot: item.plot!)
+                item.notifId = notifId
             } else {
                 item.expire = nil
             }
@@ -109,6 +110,9 @@ import CoreData
             item.dateToggleSwitch = item.dateToggleSwitch
             if item.dateToggleSwitch {
                 item.expire = expire
+                notificationManager.removePendingNotification(id: item.notifId ?? "")
+                let notifId = scheduleNotification(triggerDate: item.expire, title: item.title!, plot: item.plot!)
+                item.notifId = notifId
             } else {
                 item.expire = nil
             }
@@ -120,9 +124,13 @@ import CoreData
         
     }
     
+    
+    
     // MARK: - Fonction DeleteItem
     func deleteItems(offsets: IndexSet, vc: NSManagedObjectContext, items: FetchedResults<Item>) {
         withAnimation {
+            let item = offsets.map { items[$0] }
+            notificationManager.removePendingNotification(id: item.first!.notifId ?? "")
             offsets.map { items[$0] }.forEach(vc.delete)
             todos.remove(atOffsets: offsets)
             do {
@@ -130,10 +138,7 @@ import CoreData
                     try vc.save()
                     todos = await loadData(vc: vc)
                 }
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            } 
         }
     }
     

@@ -38,7 +38,7 @@ struct AddTodoView: View {
                         if title != "" {
                             if content != "" {
                                 Task {
-                                    todoVM.addItem(title: title, plot: content, expire: expire, categogyPickerSelection: categogyPickerSelection, dateToggleSwitch: dateToggleSwitch, vc: viewContext)
+                                   let _ = todoVM.addItem(title: title, plot: content, expire: expire, categogyPickerSelection: categogyPickerSelection, dateToggleSwitch: dateToggleSwitch, vc: viewContext)
                                     todoVM.todos = await todoVM.loadData(vc: viewContext)
                                     addTodo = false
                                 }
@@ -54,7 +54,7 @@ struct AddTodoView: View {
                 } label: {
                     Text("Ajouter")
                         .padding(30)
-                }
+                }.accessibilityIdentifier("add")
                 .alert("Oups ! Tu as oublié d'ajouter un titre et une description", isPresented: $showingAlertTitleAndContent) {
                     Button("OK", role: .cancel) { }
                 }
@@ -69,14 +69,13 @@ struct AddTodoView: View {
             Form {
                 Section {
                     TextField("Titre", text: $title)
-                    TextField("Description", text: $content, axis: .vertical)
-                    
+                    TextField("Description", text: $content)
                 } header: {
                     Text("Informations")
-                }
-                
+                }   
                 Section {
                     SegmentedPickerCategory(CategorypickerSelection: $categogyPickerSelection)
+                        .accessibilityIdentifier("categoryPicker")
                 }header: {
                     Text("Categorie")
                 }
@@ -84,18 +83,18 @@ struct AddTodoView: View {
                     if dateToggleSwitch {
                         DatePicker(selection: $expire, in: Date.now..., displayedComponents: .date) {
                             Text("Date")
-                        }
+                        }.accessibilityIdentifier("dateField")
                         DatePicker(selection: $expire, displayedComponents: .hourAndMinute) {
                             Text("heure")
-                        }                        
+                        }.accessibilityIdentifier("hourField")
                     }
-                    
                 } header: {
                     HStack {
                         Text("Date et heure")
                         Toggle(isOn: $dateToggleSwitch) {
                             EmptyView()
                         }
+                        .accessibilityIdentifier("switcher")
                     }
                 }
             }
