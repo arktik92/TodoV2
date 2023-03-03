@@ -73,6 +73,8 @@ import CoreData
                 newItem.expire = expire
                 let notifId = scheduleNotification(triggerDate: newItem.expire, title: newItem.title!, plot: newItem.plot!)
                 newItem.notifId = notifId
+            } else {
+                newItem.notifId = "PasDeNotifId"
             }
             do {
                 try vc.save()

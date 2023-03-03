@@ -1,0 +1,40 @@
+{
+  "configurations" : [
+    {
+      "id" : "333CEF50-B577-4DF3-9F33-765104DE686E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "language" : "fr",
+    "region" : "FR",
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:todoTest.xcodeproj",
+      "identifier" : "70A342C52976DC7500C7A340",
+      "name" : "todoTest"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:todoTest.xcodeproj",
+        "identifier" : "F207AF9829AF971E00AA20C9",
+        "name" : "todoTestTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:todoTest.xcodeproj",
+        "identifier" : "F207AF8929AF546200AA20C9",
+        "name" : "todoTestUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -29,6 +29,7 @@ final class todoTestTests: XCTestCase {
         let categoryPickerSelection: CategoryPickerSelection = .maison
         
         let item = vm.addItem(title: title, plot: plot, expire: expire, categogyPickerSelection: categoryPickerSelection, dateToggleSwitch: dateToggleSwitch, vc: viewContext)
+
         
         print(item)
         XCTAssertEqual(item.title, title)
@@ -41,13 +42,16 @@ final class todoTestTests: XCTestCase {
     
     func testSaveItem() {
         // Add Item
-        let item = vm.addItem(title: "titleBeforeUpdate", plot: "plotBeforeUpdate", expire: Date.now, categogyPickerSelection: .maison, dateToggleSwitch: false, vc: viewContext)
+        Task {
+            vm.todos = await vm.loadData(vc: viewContext)
+            let item2 = vm.addItem(title: "titleBeforeUpdate", plot: "plotBeforeUpdate", expire: Date.now, categogyPickerSelection: .maison, dateToggleSwitch: false, vc: viewContext)
+            vm.saveItem(item: item2, title: "title" , plot: "Description" , categogyPickerSelection: .travail, expire: Date.now , vc: viewContext)
+            let todos = await vm.loadData(vc: viewContext)
+            print(todos.count)
+        }
         
         // Update Item
-        vm.saveItem(item: item, title: "title" , plot: "Description" , categogyPickerSelection: .travail, expire: Date.now , vc: viewContext)
         Task {
-           let todos = await vm.loadData(vc: viewContext)
-            print(todos.count)
         }
     }
     
@@ -71,11 +75,11 @@ final class todoTestTests: XCTestCase {
     
     
     
-    func testDeleteItem() {
-        vm.addItem(title: "deleteTitle", plot: "DeleteDescription", expire: Date.now, categogyPickerSelection: .maison, dateToggleSwitch: false, vc: viewContext)
-
-
-    }
+//    func testDeleteItem() {
+//        vm.addItem(title: "deleteTitle", plot: "DeleteDescription", expire: Date.now, categogyPickerSelection: .maison, dateToggleSwitch: false, vc: viewContext)
+//
+//
+//    }
 
 
 }

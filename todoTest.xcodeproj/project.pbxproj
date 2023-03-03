@@ -29,7 +29,6 @@
 		F207AF8D29AF546200AA20C9 /* todoTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207AF8C29AF546200AA20C9 /* todoTestUITests.swift */; };
 		F207AF8F29AF546200AA20C9 /* todoTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207AF8E29AF546200AA20C9 /* todoTestUITestsLaunchTests.swift */; };
 		F207AF9C29AF971E00AA20C9 /* todoTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207AF9B29AF971E00AA20C9 /* todoTestTests.swift */; };
-		F207AFA429AFA6BB00AA20C9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F207AFA329AFA6BB00AA20C9 /* CoreDataStack.swift */; };
 		F233E75229B115BF009BF69D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F233E75129B115BF009BF69D /* NotificationManager.swift */; };
 		F23A7DBE29AE121500EEE9F4 /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A7DBD29AE121500EEE9F4 /* ListCellView.swift */; };
 		F23A7DC229AE1B8A00EEE9F4 /* DateAndTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A7DC129AE1B8A00EEE9F4 /* DateAndTimeFormatter.swift */; };
@@ -77,8 +76,8 @@
 		F207AF8E29AF546200AA20C9 /* todoTestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoTestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F207AF9929AF971E00AA20C9 /* todoTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F207AF9B29AF971E00AA20C9 /* todoTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoTestTests.swift; sourceTree = "<group>"; };
-		F207AFA329AFA6BB00AA20C9 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F233E75129B115BF009BF69D /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		F239FBFC29B1F29500C77C3E /* todoTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = todoTest.xctestplan; sourceTree = "<group>"; };
 		F23A7DBD29AE121500EEE9F4 /* ListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
 		F23A7DC129AE1B8A00EEE9F4 /* DateAndTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAndTimeFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +113,7 @@
 			children = (
 				7031BD0E2976FB3F000B407F /* TypePickerSelection.swift */,
 				709AFF2E297B181900FF212E /* CategoryPickerSelection.swift */,
+				70A342D42976DC7600C7A340 /* todoTest.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				70A342C82976DC7500C7A340 /* todoTest */,
+				F239FBFC29B1F29500C77C3E /* todoTest.xctestplan */,
 				F207AF8B29AF546200AA20C9 /* todoTestUITests */,
 				F207AF9A29AF971E00AA20C9 /* todoTestTests */,
 				70A342C72976DC7500C7A340 /* Products */,
@@ -164,14 +165,12 @@
 			isa = PBXGroup;
 			children = (
 				70A342C92976DC7500C7A340 /* todoTestApp.swift */,
-				F207AFA229AFA6AE00AA20C9 /* CoreData */,
 				7031BD1C2977EFBB000B407F /* View */,
 				7031BD1B2977EFB6000B407F /* ViewModel */,
 				7031BD1A2977EFB1000B407F /* Model */,
 				F23A7DC029AE1B5800EEE9F4 /* Utils */,
 				70A342CD2976DC7600C7A340 /* Assets.xcassets */,
 				70A342D22976DC7600C7A340 /* Persistence.swift */,
-				70A342D42976DC7600C7A340 /* todoTest.xcdatamodeld */,
 				70A342CF2976DC7600C7A340 /* Preview Content */,
 			);
 			path = todoTest;
@@ -210,14 +209,6 @@
 				F207AF9B29AF971E00AA20C9 /* todoTestTests.swift */,
 			);
 			path = todoTestTests;
-			sourceTree = "<group>";
-		};
-		F207AFA229AFA6AE00AA20C9 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				F207AFA329AFA6BB00AA20C9 /* CoreDataStack.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		F23A7DBC29AE11E800EEE9F4 /* ListFlow */ = {
@@ -384,7 +375,6 @@
 				709AFF31297B28DD00FF212E /* EditTodoFormView.swift in Sources */,
 				709AFF2D297B17FB00FF212E /* SegmentedPickerCategory.swift in Sources */,
 				70A342CA2976DC7500C7A340 /* todoTestApp.swift in Sources */,
-				F207AFA429AFA6BB00AA20C9 /* CoreDataStack.swift in Sources */,
 				7031BD192977EC2E000B407F /* todoViewModel.swift in Sources */,
 				70C7D4BE29798B7200A60038 /* SegmentedPickerTodoOrDone.swift in Sources */,
 				709AFF2F297B181900FF212E /* CategoryPickerSelection.swift in Sources */,
