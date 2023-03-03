@@ -39,7 +39,6 @@ final class todoTestTests: XCTestCase {
         }
         XCTAssertEqual(item.dateToggleSwitch, dateToggleSwitch)
     }
-    
     func testSaveItem() {
         // Add Item
         Task {
@@ -50,10 +49,7 @@ final class todoTestTests: XCTestCase {
             print(todos.count)
         }
         
-        // Update Item
-        Task {
-        }
-    }
+            }
     
 //    func testMoveItem() {
 //        // Creation des variables de tests
